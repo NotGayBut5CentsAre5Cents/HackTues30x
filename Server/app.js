@@ -1,11 +1,15 @@
 var express = require('express')
 var app = express()
+var ejs = require('ejs');
+
+app.set('view engine', 'ejs');
+
 
 app.listen(3000, () => 
     console.log('Example app listening on port 3000!'))
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + "/views/homepage.html")
+    res.render("homepage")
 })
 
 app.post('/upload', function (req, res) {
@@ -17,7 +21,7 @@ app.post('/upload', function (req, res) {
     process.stdout.on('data', function (data) {
         console.log(data.toString())
         res.render('result', {
-            result: result
+            text: result
         });
     });
 
