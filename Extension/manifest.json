@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Text Summarizer",
+    "description": "This extension makes summarie of a text.",
+    "version": "1.0",
+  
+    "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "activeTab",
+      "storage",
+      "http://localhost:3000/*"
+    ]
+  }
