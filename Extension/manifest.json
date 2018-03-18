@@ -13,5 +13,6 @@
       "activeTab",
       "storage",
       "http://localhost:3000/*"
-    ]
+    ],
+    "web_accessible_resources": ["styles.css"]
   }

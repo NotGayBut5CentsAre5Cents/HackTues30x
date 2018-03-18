@@ -1,0 +1,102 @@
+body {
+    min-width: 610px;
+    min-height: 300px;
+}
+#wrapper.container {
+    position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.heading {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    background: #F1F1F1;
+    margin: 0;
+    border-bottom: solid gray;
+    border-bottom-width: thin;
+    box-shadow:0px 1px 1px gray;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.content {
+    width: 48%;
+    float: left;
+}
+#cnt1.content, #cnt2.content {
+    position: relative;
+    height: 100%;
+}
+#cnt1.content {
+    border-right: solid gray;
+    border-right-width: thin;
+    box-shadow:1px 0px 1px -1px gray;
+}
+
+#response {
+    margin: 5px;
+    border: 1px dashed #AAA;
+    width: 100%;
+    overflow: auto;
+}
+
+#info {
+   font-size: 15px;
+   padding: 5px;
+   padding-bottom: 10px;
+}
+#text {
+    padding: 5px;
+    display: inline-block;
+    border: 1px dashed #AAA;
+    max-height: 60%;
+    width: 95%;
+    overflow: auto;
+}
+#buttonSubmit.summarize:hover {
+    background-color: #555555b2;
+}
+
+#buttonSubmit.summarize:active {
+    background-color: #3b3b3b;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  [contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+  }
+
+#buttonSubmit.summarize {
+    margin: 10px;
+    margin-bottom: 50px;
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    position: absolute;
+    right:    0;
+    bottom:   0;
+}

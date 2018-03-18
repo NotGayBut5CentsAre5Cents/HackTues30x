@@ -2,22 +2,28 @@
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
-    <style src="styles/style.css"></style>
+    <link href="/styles/style.css" rel="stylesheet"/>
     <script src="popup.js"></script>
   </head>
 
   <body>
-    <h1>Background Color Changer</h1>
-    <div id="container">
-      <span>Mark text for summurization</span>
-      <br>
-      <br>
-      <button id="summarize">
-        Summarize
-      </button>
-      <br>
-      <br>
-      <div id="response">test</div>
+    <div class="container" id="wrapper">
+      <div class="heading" >
+        <h1 class="title">Text Summarizer</h1>      
+      </div>
+      <div class="container">
+        <div class="content" id="cnt1">
+            <span id="info">Mark text for summurization: </span>
+            <div id="text" contenteditable="true" placeholder="or Enter text here"></div>
+            <button class="summarize" id="buttonSubmit">
+                Summarize
+            </button>
+        </div>
+        <div class="content" id="cnt2">
+            <div><span id="info">Summarized text: </span></div>
+            <div id="response"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

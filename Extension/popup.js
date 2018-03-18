@@ -33,13 +33,18 @@ function getCurrentTabUrl(callback) {
  */
 function getSummarizedText(url) { 
   var text = "";
-  chrome.tabs.executeScript( {
-    code: "if (window.getSelection) { window.getSelection().toString();" +
-    "} else if (document.selection && document.selection.type != \"Control\") {" +
-    "  text = document.selection.createRange().text;}"
-  }, function(selection) {
-    //document.getElementById("response").innerHTML = selection[0];
-  });
+  var textDiv = document.getElementById("text");
+  if(textDiv.innerHTML != "") {
+    document.getElementById("response").innerHTML = textDiv.innerHTML;
+  }else {
+    chrome.tabs.executeScript( {
+      code: "if (window.getSelection) { window.getSelection().toString();" +
+      "} else if (document.selection && document.selection.type != \"Control\") {" +
+      " document.selection.createRange().text;}"
+    }, function(selection) {
+      document.getElementById("response").innerHTML = selection[0];
+    });
+  }
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost:3000/sum", true);
   xhr.onreadystatechange = function() {
@@ -53,7 +58,7 @@ function getSummarizedText(url) {
 
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((url) => {
-    var button = document.getElementById('summarize');
+    var button = document.getElementById('buttonSubmit');
     
     // Ensure the background color is changed and saved when the dropdown
     // selection changes.
