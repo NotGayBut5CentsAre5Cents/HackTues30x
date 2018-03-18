@@ -23,6 +23,18 @@ function getCurrentTabUrl(callback) {
 
 }
 
+function sendData(data) {
+  $.ajax({
+    type: "post",
+    url: 'http://localhost:3000/upload',
+    data: {text: data, sender: "ext"},
+    success: function(data) {
+        console.log("Hello, world!")
+        document.getElementById("response").innerHTML = data;
+     }
+  });
+}
+
 /**
  * Gets the text summarry
  *
@@ -46,6 +58,7 @@ function getSummarizedText(url) {
 
   if(textDiv.innerHTML != "") {
     text = textDiv.innerHTML;
+    sendData(text);
     //xhr.send(JSON.stringify({text: text}));
   }else {
     chrome.tabs.executeScript( {
@@ -55,15 +68,7 @@ function getSummarizedText(url) {
     }, function(selection) {
       text = selection[0]; 
       //xhr.send(JSON.stringify({ss: 1}));
-      $.ajax({
-        type: "post",
-        url: 'http://localhost:3000/sum',
-        data: {text: text},
-        success: function(data) {
-            console.log("Hello, world!")
-            document.getElementById("response").innerHTML = data;
-         }
-      });
+      sendData(text);
     });
   }
 }
