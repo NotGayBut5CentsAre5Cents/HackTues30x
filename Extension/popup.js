@@ -34,19 +34,19 @@ function getCurrentTabUrl(callback) {
 function getSummarizedText(url) { 
   var text = "";
   var textDiv = document.getElementById("text");
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:3000/sum", true);
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-      console.log("Hello, world!")
+  //var xhr = new XMLHttpRequest();
+  // xhr.open("POST", "http://localhost:3000/sum", true);
+  // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  // xhr.onreadystatechange = function() {
+    // if (xhr.readyState == XMLHttpRequest.DONE) {
+      // console.log("Hello, world!")
       //document.getElementById("response").innerHTML = xhr.responseText;
-    }
-  }
+    // }
+  // }
 
   if(textDiv.innerHTML != "") {
     text = textDiv.innerHTML;
-    xhr.send(JSON.stringify({text: text}));
+    //xhr.send(JSON.stringify({text: text}));
   }else {
     chrome.tabs.executeScript( {
       code: "if (window.getSelection) { window.getSelection().toString();" +
@@ -54,7 +54,16 @@ function getSummarizedText(url) {
       " document.selection.createRange().text;}"
     }, function(selection) {
       text = selection[0]; 
-      xhr.send(JSON.stringify({ss: 1}));
+      //xhr.send(JSON.stringify({ss: 1}));
+      $.ajax({
+        type: "post",
+        url: 'http://localhost:3000/sum',
+        data: {text: text},
+        success: function(data) {
+            console.log("Hello, world!")
+            document.getElementById("response").innerHTML = data;
+         }
+      });
     });
   }
 }

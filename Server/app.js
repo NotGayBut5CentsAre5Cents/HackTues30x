@@ -1,6 +1,12 @@
 var express = require('express')
 var app = express()
 var ejs = require('ejs');
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.set('view engine', 'ejs');
 
@@ -33,6 +39,6 @@ app.post('/upload', function (req, res) {
 });
 
 app.post("/sum", function (req, res) {
-    console.log(req.params);
-    res.send("asdsad");
+    console.log(req.body.text);
+    res.send(req.body.text)
 });
