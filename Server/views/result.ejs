@@ -1,9 +1,70 @@
+<!DOCTYPE html>
 <html>
-    <body>
-        <div>
-            <textarea>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .has-bg-img { background: url('../public/bg2.jpg')center center; background-size:cover; }
+    </style>
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  </head>
+<body>
+  <section class="hero is-info is-fullheight has-bg-img">
+    <div class="hero-head">
+           <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+              <a href="index.ejs">
+                <img  class="navbar-item" src="../public/logo1.png" alt="Logo" width="182" height="148">
+              </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="search.ejs">
+                Find a mentor
+              </a>
+              <a class="navbar-item" href="search.ejs">
+                Find a team
+              </a>
+              <a class="navbar-item" href="summarize.ejs">
+                Summarize
+              </a>
+             
+              <div class="navbar-item">
+                <a class="button is-primary is-inverted is-outlined">
+                  Why us?
+                </a>
+              </div>
+              <a class="navbar-item is-hidden-desktop-only" href="https://github.com/NotGayBut5CentsAre5Cents/HackTues30x" target="_blank">
+                <span class="icon" style="color: #333;">
+                  <i class="fab fa-2x fa-github"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="hero-body">
+      <div class="container">
+
+      	<div>
+            <textarea class="text-long textarea is-success" style="width:500px; height:300px;">
                 <%= text %>
             </textarea>
         </div>
-    </body>
+        
+      </div>
+    </div>
+
+  </section>
+</body>
 </html>
