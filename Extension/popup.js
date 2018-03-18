@@ -34,26 +34,29 @@ function getCurrentTabUrl(callback) {
 function getSummarizedText(url) { 
   var text = "";
   var textDiv = document.getElementById("text");
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://localhost:3000/sum", true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      console.log("Hello, world!")
+      //document.getElementById("response").innerHTML = xhr.responseText;
+    }
+  }
+
   if(textDiv.innerHTML != "") {
-    document.getElementById("response").innerHTML = textDiv.innerHTML;
+    text = textDiv.innerHTML;
+    xhr.send(JSON.stringify({text: text}));
   }else {
     chrome.tabs.executeScript( {
       code: "if (window.getSelection) { window.getSelection().toString();" +
       "} else if (document.selection && document.selection.type != \"Control\") {" +
       " document.selection.createRange().text;}"
     }, function(selection) {
-      document.getElementById("response").innerHTML = selection[0];
+      text = selection[0]; 
+      xhr.send(JSON.stringify({ss: 1}));
     });
   }
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost:3000/sum", true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-      console.log("Hello, world!")
-      document.getElementById("response").innerHTML = xhr.responseText;
-    }
-  }
-  xhr.send(text);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

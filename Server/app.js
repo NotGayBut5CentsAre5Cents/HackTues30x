@@ -32,7 +32,7 @@ app.post('/upload', function (req, res) {
 
 });
 
-app.get("/sum", function (req, res) {
-    console.log("zdda");
+app.post("/sum", function (req, res) {
+    console.log(req.params);
     res.send("asdsad");
 });
