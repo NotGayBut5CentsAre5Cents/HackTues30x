@@ -46,8 +46,16 @@ SUB_BATCH_SIZE = 100
 
 
 import pickle
+import os
+import os.path
 
-with open('C:\\Users\\teler\\Desktop\\HackTues30x\\data\\embeddings.pkl', 'rb') as fp:
+os.chdir("..")
+cwd = os.getcwd()
+dir_name = "data"
+file_name = "embeddings.pkl"
+abs_path = os.path.join(cwd, dir_name, file_name)
+
+with open(abs_path, 'rb') as fp:
     our_embedding , idx2word , word2idx = pickle.load(fp)
 
 word2idx['__unk__'] = UNK
@@ -58,7 +66,9 @@ idx2word[UNK] = '__unk__'
 idx2word[PAD] = '__pad__'
 idx2word[START] =  '__start__'
 
-with open('C:\\Users\\teler\\Desktop\\HackTues30x\\data\\xy.pkl', 'rb') as fp:
+file_name = "xy.pkl"
+abs_path = os.path.join(cwd, dir_name, file_name)
+with open(abs_path, 'rb') as fp:
     x, y = pickle.load(fp)
 
 x, y = np.array(x), np.array(y)
@@ -115,7 +125,13 @@ def respond_to(model, text):
     return from_word_idx(model.predict([idxs, input_y]).argmax(axis=2)[0])
 
 from keras.models import load_model
-s2s = load_model("C:\\Users\\teler\\Desktop\\HackTues30x\\models\\s2s.h5")
+
+cwd = os.getcwd()
+dir_name = "models"
+file_name = "s2s.h5"
+abs_path = os.path.join(cwd, dir_name, file_name)
+
+s2s = load_model(abs_path)
 
 print(respond_to(s2s, sys.argv[2]))
 sys.stdout.flush()
